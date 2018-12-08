@@ -1,6 +1,6 @@
 <?php
-require 'Core/Authentication.php';
-Authentication::OnlyNotLogged();
+require_once 'Core/Authentication.php';
+Authentication::OnlyLogged();
 ?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
@@ -17,7 +17,7 @@ Authentication::OnlyNotLogged();
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4 offset-md-4 p-4">
-                    <?php require 'login_card.php'; ?>
+                    
                 </div>
             </div>
         </div>

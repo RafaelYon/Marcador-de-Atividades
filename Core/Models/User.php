@@ -37,12 +37,15 @@ class User extends PrimaryModel
         return $this->name;
     }
 
-    public function SetPassword(string $password)
+    public function SetPassword(string $password, bool $hash = true)
     {
         if ($password == null)
             throw new Exception('A senha do usuário não pode estar vazia.');
         
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        if ($hash)
+            $this->password = password_hash($password, PASSWORD_DEFAULT);
+        else
+            $this->password = $password;
     }
 
     public function GetPassword()
@@ -50,7 +53,7 @@ class User extends PrimaryModel
         return $this->password;
     }
 
-    public function VerifyPassword(string $attemptedPassword)
+    public function VerifyPassword(string $attemptedPassword) : bool
     {
         if ($this->password == null)
             throw new Exception('A senha do usuário não foi definida.');

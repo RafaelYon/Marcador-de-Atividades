@@ -1,8 +1,7 @@
 <?php
-    require 'Core/SessionController.php';
+    require_once 'Core/SessionController.php';
 
     SessionController::StartSessionIfNeed();
-
     $uri = $_SERVER['REQUEST_URI'];
 ?>
 <div class="row">
@@ -23,12 +22,17 @@
                 </li>
             </ul>
             <div class="btn-group">
-                <a class="btn btn-light
-                    <?php if (preg_match('/login/', $uri)) { echo 'active'; } ?>"
-                    href="login.php">Entrar</a>
-                <a class="btn btn-light 
-                    <?php if (preg_match('/register/', $uri)) { echo 'active'; } ?>"
-                    href="register.php">Cadastro</a>
+
+                <?php if (SessionController::UserIsLogged()) { ?>
+                    <a class="btn btn-light" href="logout.php">Sair</a>
+                <?php } else { ?>
+                    <a class="btn btn-light
+                        <?php if (preg_match('/login/', $uri)) { echo 'active'; } ?>"
+                        href="login.php">Entrar</a>
+                    <a class="btn btn-light 
+                        <?php if (preg_match('/register/', $uri)) { echo 'active'; } ?>"
+                        href="register.php">Cadastro</a>
+                <?php } ?>
             </div>
         </div>
         </nav>

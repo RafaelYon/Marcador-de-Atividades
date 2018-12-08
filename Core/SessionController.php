@@ -39,23 +39,54 @@ class SessionController
     {
         self::StartSessionIfNeed();
 
-        $_SESSION['msg'] = $msg;
+        $_SESSION['msgSuccess'] = $msg;
     }
 
     public static function ExistsSuccessMessage()
     {
         self::StartSessionIfNeed();
 
-        return !empty($_SESSION['msg']);
+        return !empty($_SESSION['msgSuccess']);
     }
 
     public static function GetSuccessMessage()
     {
         self::StartSessionIfNeed();
 
-        $msg = $_SESSION['msg'];
-        unset($_SESSION['msg']);
+        $msg = $_SESSION['msgSuccess'];
+        unset($_SESSION['msgSuccess']);
 
         return $msg;
+    }
+
+    public static function StartUserSession(User $user)
+    {
+        self::StartSessionIfNeed();
+        
+        // Todo usuário deve possuir um id válido.
+        if ($user->GetId() == 0)
+            return;
+
+        // Remove a senha da modal
+        $user->SetPassword(null, false);
+        
+        // Armazena diretamento o objeto User na sessão
+        $_SESSION['user'] = $user;
+    }
+
+    public static function StopUserSession()
+    {
+        self::StartSessionIfNeed();
+
+        unset($_SESSION['user']);
+
+        session_destroy();
+    }
+
+    public static function UserIsLogged() : bool
+    {
+        self::StartSessionIfNeed();
+
+        return (!empty($_SESSION['user']));
     }
 }

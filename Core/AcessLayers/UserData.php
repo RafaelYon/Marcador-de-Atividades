@@ -18,7 +18,7 @@ class UserData
             $user->SetName($row_assoc['name']);
         
         if (!empty($row_assoc['password']))
-            $user->SetPassword($row_assoc['password']);
+            $user->SetPassword($row_assoc['password'], false);
         
         if (isset($row_assoc['role']) && is_numeric($row_assoc['role']))
             $user->SetRole($row_assoc['role']);

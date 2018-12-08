@@ -1,3 +1,7 @@
+<?php
+require 'Core/Authentication.php';
+Authentication::OnlyNotLogged();
+?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
     <head>

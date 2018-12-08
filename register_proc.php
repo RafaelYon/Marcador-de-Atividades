@@ -3,6 +3,12 @@
     require 'Core/Models/User.php';
     require 'Core/AcessLayers/UserData.php';
     require 'Core/SessionController.php';
+
+    if (empty($_POST))
+    {
+        header('location:register.php');
+        die();
+    }
     
     try
     {        
