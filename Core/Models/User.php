@@ -39,7 +39,7 @@ class User extends PrimaryModel
 
     public function SetPassword(string $password, bool $hash = true)
     {
-        if ($password == null)
+        if ($password == '')
             throw new Exception('A senha do usuário não pode estar vazia.');
         
         if ($hash)
@@ -55,13 +55,18 @@ class User extends PrimaryModel
 
     public function VerifyPassword(string $attemptedPassword) : bool
     {
-        if ($this->password == null)
+        if ($this->password == '')
             throw new Exception('A senha do usuário não foi definida.');
         
-        if ($attemptedPassword == null)
+        if ($attemptedPassword == '')
             throw new Exception('A senha do usuário não pode estar vazia.');
         
         return password_verify($attemptedPassword, $this->password);
+    }
+
+    public function RemovePassword()
+    {
+        $this->password = '';
     }
 
     public function SetRole(int $role)

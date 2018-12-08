@@ -68,7 +68,7 @@ class SessionController
             return;
 
         // Remove a senha da modal
-        $user->SetPassword(null, false);
+        $user->RemovePassword();
         
         // Armazena diretamento o objeto User na sessão
         $_SESSION['user'] = $user;

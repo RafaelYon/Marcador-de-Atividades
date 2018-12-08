@@ -1,3 +1,6 @@
+<?php
+require 'Core/SessionController.php';
+?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
     <head>
@@ -10,8 +13,16 @@
     <body>
         <?php include 'navbar.php'; ?>
 
-        <div class="container-fluid">
-            <h1>Socorro</h1>
+        <div class="container-fluid pt-4">
+            <?php if (SessionController::UserIsLogged()) { ?>
+                
+            <?php } else { ?>
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <?php include 'login_card.php'; ?>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
 
     </body>

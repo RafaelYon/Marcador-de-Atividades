@@ -13,3 +13,11 @@ CREATE TABLE user (
     password VARCHAR(100) NOT NULL,
     role TINYINT(1) NOT NULL DEFAULT 1
 );
+
+CREATE TABLE activity (
+    id_activity INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_user INT NOT NULL,
+    name VARCHAR(280) NOT NULL,
+    start_date DATETIME NOT NULL,
+    end_date DATETIME NOT NULL
+);

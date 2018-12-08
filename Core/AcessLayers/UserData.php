@@ -2,7 +2,7 @@
 
 class UserData
 {
-    private static $dbFile = 'user';
+    private static $tableName = 'user';
 
     private static function FillUserClass(array $row_assoc) : User
     {
@@ -28,9 +28,9 @@ class UserData
 
     public static function Insert(User $user)
     {
-        $dbFile = self::$dbFile;
+        $tableName = self::$tableName;
 
-        $sql = "INSERT INTO {$dbFile} (email, name, password, role) VALUES 
+        $sql = "INSERT INTO {$tableName} (email, name, password, role) VALUES 
         ('{$user->GetEmail()}', '{$user->GetName()}', '{$user->GetPassword()}', {$user->getRole()})";
 
         $db = DB::GetInstance();
@@ -42,9 +42,9 @@ class UserData
 
     public static function Update(User $user)
     {
-        $dbFile = self::$dbFile;
+        $tableName = self::$tableName;
         
-        $sql  = "UPDATE {$dbFile} SET ";
+        $sql  = "UPDATE {$tableName} SET ";
         $sql .= "email = '{$user->GetEmail()}', ";
         $sql .= "name = '{$user->GetName()}', ";
         $sql .= "password = '{$user->GetPassword()}', ";
@@ -60,9 +60,9 @@ class UserData
 
     public static function SelectById(int $id)
     {
-        $dbFile = self::$dbFile;
+        $tableName = self::$tableName;
 
-        $sql = "SELECT id_user, email, name, password, role FROM {$dbFile} WHERE id_user = $id";
+        $sql = "SELECT id_user, email, name, password, role FROM {$tableName} WHERE id_user = $id";
 
         $db = DB::GetInstance();
         $result = $db->DoQuery($sql);
@@ -77,9 +77,9 @@ class UserData
 
     public static function SelectByEmail(string $email)
     {
-        $dbFile = self::$dbFile;
+        $tableName = self::$tableName;
         
-        $sql = "SELECT id_user, email, name, password, role FROM $dbFile WHERE email LIKE '$email'";
+        $sql = "SELECT id_user, email, name, password, role FROM $tableName WHERE email LIKE '$email'";
 
         $db = DB::GetInstance();
         $result = $db->DoQuery($sql);
