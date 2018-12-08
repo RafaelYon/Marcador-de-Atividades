@@ -54,7 +54,7 @@ class UserData
         $db = DB::GetInstance();
         $result = $db->DoQuery($sql);
 
-        if (mysqli_affected_rows($result) != 1)
+        if (mysqli_affected_rows($db->conn) != 1)
             throw new Exception("Não foi possível atualizar este usuário.");
     }
 
@@ -67,7 +67,7 @@ class UserData
         $db = DB::GetInstance();
         $result = $db->DoQuery($sql);
 
-        if (mysqli_affected_rows($result) < 1)
+        if (mysqli_affected_rows($db->conn) < 1)
             return null;
         
         $rowData = mysqli_fetch_assoc($result);
