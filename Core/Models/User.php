@@ -10,6 +10,9 @@ class User extends PrimaryModel
     
     public function SetEmail(string $email)
     {
+        if ($email == null)
+            throw new Exception('O e-mail do usuário não pode estar vazio.');
+        
         if (!filter_var($email, FILTER_VALIDATE_EMAIL))
             throw new Exception("O e-mail \"$email\" não é válido.");
         

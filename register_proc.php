@@ -11,7 +11,7 @@
         $user->SetEmail($_POST['email']);
         $user->SetPassword($_POST['password']);
 
-        // Veriica se já não exite um usuário com este e-mail
+        // Verifica se já não exite um usuário com este e-mail
         $dbUser = UserData::SelectByEmail($user->GetEmail());
 
         if ($dbUser != null)

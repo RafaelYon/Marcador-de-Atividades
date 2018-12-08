@@ -5,7 +5,7 @@
 
         <div class="row">
             <div class="col">
-                <form name="register_form" method="post" action="login_proc.php">
+                <form name="login_form" method="post" action="login_proc.php">
 
                     <div class="form-group">
                         <label>E-mail</label>
